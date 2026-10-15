@@ -86,3 +86,5 @@ A room without a valid sensor value (all `unavailable`/`unknown`) is shown dimme
 ## Releases
 
 A GitHub Action (`.github/workflows/release.yml`) automatically creates a release `vX.Y.Z` when `CARD_VERSION` in `temperature-bars-card.js` is raised and pushed to `main`. HACS then shows the new version as an update. If the release already exists, nothing happens.
+
+To test a change without bothering other users, set `CARD_VERSION` to a pre-release version such as `0.2.0-beta.1`. It is published as a GitHub pre-release, which HACS only shows to users who enabled **Show beta versions** for this repository. Once it works, publish the stable version (e.g. `0.2.0`).

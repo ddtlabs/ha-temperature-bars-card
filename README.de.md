@@ -86,3 +86,5 @@ Ein Raum ohne gültigen Sensorwert (alle `unavailable`/`unknown`) wird abgedunke
 ## Releases
 
 Eine GitHub Action (`.github/workflows/release.yml`) legt automatisch ein Release `vX.Y.Z` an, sobald `CARD_VERSION` in `temperature-bars-card.js` erhöht und nach `main` gepusht wird. HACS zeigt die neue Version dann als Update an. Existiert das Release bereits, passiert nichts.
+
+Um eine Änderung zu testen, ohne andere Anwender zu stören, wird `CARD_VERSION` auf eine Vorabversion wie `0.2.0-beta.1` gesetzt. Sie wird als GitHub-Pre-Release veröffentlicht, das HACS nur Anwendern zeigt, die für dieses Repository **Beta-Versionen anzeigen** aktiviert haben. Funktioniert alles, folgt die stabile Version (z. B. `0.2.0`).

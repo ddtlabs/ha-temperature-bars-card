@@ -3,6 +3,7 @@ name: Release
 # Automatically creates a GitHub release when CARD_VERSION in
 # temperature-bars-card.js is raised and pushed to main.
 # HACS then shows the new version as an update.
+# Versions with a suffix (x.y.z-beta.N) are published as pre-releases.
 
 on:
   push:
@@ -23,9 +24,9 @@ jobs:
       - name: Read version from the card
         id: version
         run: |
-          VERSION=$(grep -oP 'CARD_VERSION = "\K[0-9]+\.[0-9]+\.[0-9]+(?=")' temperature-bars-card.js || true)
+          VERSION=$(grep -oP 'CARD_VERSION = "\K[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?(?=")' temperature-bars-card.js || true)
           if [ -z "$VERSION" ]; then
-            echo "CARD_VERSION (x.y.z) not found in temperature-bars-card.js" >&2
+            echo "CARD_VERSION (x.y.z or x.y.z-beta.N) not found in temperature-bars-card.js" >&2
             exit 1
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
@@ -38,8 +39,12 @@ jobs:
           if gh release view "v$VERSION" >/dev/null 2>&1; then
             echo "Release v$VERSION already exists, nothing to do."
           else
+            # A version with a suffix (e.g. 0.2.0-beta.1) becomes a pre-release,
+            # which HACS only offers to users who enabled "Show beta versions".
+            FLAGS=""
+            case "$VERSION" in *-*) FLAGS="--prerelease" ;; esac
             gh release create "v$VERSION" \
               --target "$GITHUB_SHA" \
               --title "v$VERSION" \
-              --generate-notes
+              --generate-notes $FLAGS
           fi
