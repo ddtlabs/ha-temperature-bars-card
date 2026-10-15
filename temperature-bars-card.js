@@ -15,7 +15,7 @@
  * rendered as a single group.
  */
 
-const CARD_VERSION = "0.1.0";
+const CARD_VERSION = "0.2.0-beta.1";
 
 const DEFAULTS = {
   min: 15,
@@ -341,7 +341,7 @@ class TemperatureBarsCard extends HTMLElement {
               fmtScale(g.scale.max)
             )}</span></div></div>`
           : "";
-        return `<div class="group">${rowsHtml}${scaleHtml}</div>`;
+        return `<div class="group">${scaleHtml}${rowsHtml}</div>`;
       })
       .join("");
 
@@ -363,7 +363,7 @@ class TemperatureBarsCard extends HTMLElement {
         .dot { position: absolute; top: 50%; width: 14px; height: 14px; box-sizing: border-box; transform: translate(-50%, -50%); border-radius: 50%; background: #d6dadc; border: 2px solid #3a3f44; box-shadow: 0 0 2px rgba(0,0,0,.4); }
         .off .track { opacity: .25; }
         .off .name, .off .val { opacity: .6; }
-        .scale { display: grid; grid-template-columns: minmax(64px, 28%) 56px 1fr; gap: 12px; margin-top: -4px; font-size: 11px; color: var(--secondary-text-color); }
+        .scale { display: grid; grid-template-columns: minmax(64px, 28%) 56px 1fr; gap: 12px; margin-bottom: -4px; font-size: 11px; color: var(--secondary-text-color); }
         .scale div:last-child { display: flex; justify-content: space-between; }
         .hint { padding: 16px; color: var(--secondary-text-color); }
       </style>
