@@ -2,6 +2,8 @@
 
 [Deutsch](README.de.md)
 
+![Temperature Overview Bars Card](docs/screenshot.png)
+
 A Home Assistant dashboard card that shows room temperatures as gradient bars (styled after the weather forecast card).
 
 - Default scale **15–25 °C**

@@ -2,6 +2,8 @@
 
 [English](README.md)
 
+![Temperature Overview Bars Card](docs/screenshot.png)
+
 Home-Assistant-Dashboard-Karte, die die Raumtemperaturen als Balken mit Farbverlauf anzeigt (Optik angelehnt an die Wettervorhersage-Karte).
 
 - Skala standardmäßig **15–25 °C**
